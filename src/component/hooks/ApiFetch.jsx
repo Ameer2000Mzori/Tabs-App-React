@@ -30,5 +30,3 @@ export const ApiFetch = () => {
 
   return { data, loading, error }
 }
-
-// https://course-api.com/react-tabs-project

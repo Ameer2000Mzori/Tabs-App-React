@@ -6,11 +6,13 @@ const Tabs = () => {
 
   const [selectedTab, setSelectedTab] = useState()
   const [userData, setUserData] = useState()
+  const [selectedUserData, setSelectedUserData] = useState()
 
   useEffect(() => {
     if (data) {
       setSelectedTab(data[0])
       setUserData(data[0])
+      setSelectedUserData(data[0])
     }
   }, [data])
 
@@ -20,16 +22,22 @@ const Tabs = () => {
   return (
     <div className="flex flex-col text-center items-center justify-center h-[100vh] w-[100vw]">
       <div className="flex flex-row text-center items-center justify-center h-[100vh] w-[100vw]">
-        <aside className="w-[5%] h-[500px] bg-zinc-500 text-white">
+        <aside className=" w-[25%] lg:w-[5%] h-[500px] bg-zinc-500 text-white">
           <h2>tabs</h2>
           {data.map((user) => {
             return (
               <div
-                className="bg-zinc-300 text-black cursor-pointer p-2"
+                className={
+                  selectedUserData?.id === user.id
+                    ? `bg-zinc-700  text-white cursor-pointer p-2`
+                    : ` bg-zinc-300 text-black cursor-pointer p-2 `
+                }
                 key={user.id}
                 onClick={() => {
                   setSelectedTab(true)
                   setUserData(user)
+                  setSelectedUserData(user)
+                  console.log(selectedUserData.id)
                 }}
               >
                 <h1>{user.company}</h1>
@@ -37,7 +45,7 @@ const Tabs = () => {
             )
           })}
         </aside>
-        <aside className="w-[25%] h-[500px] bg-zinc-600 text-white">
+        <aside className="w-[70%] lg:w-[25%]  h-[500px] bg-zinc-600 text-white">
           {selectedTab && <SelectedUser userData={userData} />}
         </aside>
       </div>

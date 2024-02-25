@@ -10,7 +10,7 @@ const SelectedUser = ({ userData }) => {
       >
         <h1>role : {title}</h1>
         <h6> at : {company}</h6>
-        <h3 className="text-[15px]">{duties}</h3>
+        <h3 className="text-[15px] overflow-auto">{duties}</h3>
         <h4>{dates}</h4>
       </div>
     </>
