@@ -1,6 +1,7 @@
 import react from 'react'
+import Tabs from './component/Tabs.jsx'
 function App() {
-  return <h1>Hello World</h1>
+  return <Tabs />
 }
 
 export default App
