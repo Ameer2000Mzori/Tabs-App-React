@@ -1,17 +1,34 @@
-import React, {useState}from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export const ApiFetch = () => {
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-    try{
-        const res = 
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true)
+        const res = await axios.get('https://course-api.com/react-tabs-project')
+
+        if (!res.statusText === 'OK') {
+          setError(true)
+          setLoading(false)
+          return
+        }
+        setData(res.data)
+      } catch (err) {
+        setError(true)
+        setLoading(false)
+        console.log(err)
+      }
+      setLoading(false)
     }
+    getData()
+  }, [])
 
-  return (
-    <div>ApiFetch</div>
-  )
+  return { data, loading, error }
 }
 
 // https://course-api.com/react-tabs-project
